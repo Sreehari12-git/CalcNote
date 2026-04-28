@@ -1,0 +1,135 @@
+import React, { useState } from 'react'
+import "../Functionalities.css"
+function Functionalities() {
+    const [activeItem, setActiveItem] = useState("Calculations")
+
+    const [num1, setNum1] = useState("")
+    const [num2, setNum2] = useState("")
+    const [operator, setOperator] = useState("")
+    const [result, setResult] = useState(null)
+    const [text, setText] = useState("")
+
+    function calculate() {
+        let n1 = parseFloat(num1);
+        let n2 = parseFloat(num2);
+        
+        if(isNaN(n1) || isNaN(n2)) {
+            alert("Should be number")
+            return;
+        }
+
+        let res;
+        switch(operator) {
+            case '+':
+                res = n1 + n2;
+                break;
+            case '-':
+                res = n1 - n2;
+                break;
+            case '*':
+                res = n1 * n2;
+                break;
+            case '/':
+                if(n2 === 0) {
+                    alert("Cannot divide by zero");
+                    break;
+                }
+                res = n1 / n2;
+                break;
+            default:
+                alert("Enter a valid operator")
+                return;
+        }
+        const expression = `${num1} ${operator} ${num2} = ${res}`;
+        setResult(expression);
+
+        const existing = JSON.parse(localStorage.getItem("Calculations")) || [];
+
+        existing.push(expression);
+
+        localStorage.setItem("Calculations", JSON.stringify(existing))
+    
+    }
+
+    function save() {
+      const existing = JSON.parse(localStorage.getItem("Text")) || [];
+      existing.push(text);
+      localStorage.setItem("Text", JSON.stringify(existing));
+    }
+
+    return (
+    <div className="func-container">
+      <div className="sidebar">
+        <div 
+          className={`sidebar-item ${activeItem === "Calculations" ? "active-sidebar" : ""}`}
+          onClick={() => setActiveItem("Calculations")}
+        >
+          Calculations
+        </div>
+
+        <div 
+          className={`sidebar-item ${activeItem === "textbox" ? "active-sidebar" : ""}`}
+          onClick={() => setActiveItem("textbox")}
+        >
+          Textbox
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="content-area">
+        <div className="func-card">
+
+          {activeItem === "Calculations" && (
+            <>
+              <h2>Calculation area</h2>
+
+              <input 
+                type='number' 
+                placeholder='Enter no' 
+                value={num1} 
+                onChange={(e) => setNum1(e.target.value)}
+              />
+
+              <input 
+                type='text' 
+                placeholder='Operator (+ - * /)' 
+                value={operator} 
+                onChange={(e) => setOperator(e.target.value)}
+              />
+
+              <input 
+                type='number' 
+                placeholder='Enter no' 
+                value={num2} 
+                onChange={(e) => setNum2(e.target.value)}
+              />
+
+              <button onClick={calculate}>Result</button>
+
+              <h3 className="result">Result: {result}</h3>
+            </>
+          )}
+
+          {activeItem === "textbox" && (
+            <>
+              <h2>Textbox area</h2>
+
+              <input 
+                type='text' 
+                placeholder='Enter a text' 
+                value={text} 
+                onChange={(e) => setText(e.target.value)}
+              />
+
+              <button onClick={save}>Save</button>
+            </>
+          )}
+
+        </div>
+      </div>
+
+    </div>
+  )
+}
+
+export default Functionalities
