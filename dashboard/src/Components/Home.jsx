@@ -11,6 +11,7 @@ function Home() {
     },[])
   return (
     <div className="home-container">
+      <div className="cards-wrapper"> 
       <div className="card">
         <h3>Calculations</h3>
         {calculation.map((item,index) => (
@@ -23,6 +24,7 @@ function Home() {
         {text.map((item, index) => (
           <p key={index}>{item}</p>
         ))}
+      </div>
       </div>
     </div>
   )
