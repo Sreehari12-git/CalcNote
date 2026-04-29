@@ -18,6 +18,19 @@ function Functionalities() {
             return;
         }
 
+        const key = `${n1} ${operator} ${n2} `
+
+        const existing = JSON.parse(localStorage.getItem("Calculations")) || [];
+
+        const found = existing.find(item => item.startsWith(key))
+
+        if(found) {
+          const isResult = found.split("=")[1].trim();
+          const newExp = `${key} = ${isResult}`
+            setResult(newExp);
+            return;
+        }
+
         let res;
         switch(operator) {
             case '+':
@@ -40,14 +53,9 @@ function Functionalities() {
                 alert("Enter a valid operator")
                 return;
         }
-        const expression = `${num1} ${operator} ${num2} = ${res}`;
+        const expression = `${key} = ${res}`;
         setResult(expression);
-
-        const existing = JSON.parse(localStorage.getItem("Calculations")) || [];
-
-        existing.push(expression);
-
-        localStorage.setItem("Calculations", JSON.stringify(existing))
+      localStorage.setItem("Calculations", JSON.stringify([...existing, expression]));
     
     }
 
