@@ -63,10 +63,23 @@ function Functionalities() {
     }
 
     function save() {
-      setText("")
       const existing = JSON.parse(localStorage.getItem("Text")) || [];
-      existing.push(text);
+      if(typeof text !== "string" || text.trim() === "") {
+        alert("Invalid or empty string. Not saved")
+        return
+      }
+
+      const value = text.trim();
+
+     const isDuplicate = existing.some(
+        item => item.toLowerCase() === value.toLowerCase()
+      );
+
+    if (!isDuplicate) {
+      existing.push(value); 
       localStorage.setItem("Text", JSON.stringify(existing));
+    }
+    setText("")
     }
 
     return (
@@ -87,7 +100,6 @@ function Functionalities() {
         </div>
       </div>
 
-      {/* Content */}
       <div className="content-area">
         <div className="func-card">
 

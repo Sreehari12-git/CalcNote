@@ -7,7 +7,7 @@ function Home() {
 
     const uniqueCalculations = [...new Set(calculation)];
 
-    // const uniqueText = [...new Set(text)];
+    const uniqueText = [...new Set(text)];
 
     const [calcPage, setCalcPage] = useState(1);
     const [textPage, setTextPage] = useState(1);
@@ -19,13 +19,13 @@ function Home() {
       calcPage * itemsPerPage
     )
 
-    const paginatedText = text.slice(
+    const paginatedText = uniqueText.slice(
       (textPage-1) * itemsPerPage,
       textPage * itemsPerPage
     )
 
     const totalPages = Math.max(1,Math.ceil(uniqueCalculations.length/itemsPerPage));
-    const totalTextPages = Math.max(1, Math.ceil(text.length/itemsPerPage));
+    const totalTextPages = Math.max(1, Math.ceil(uniqueText.length/itemsPerPage));
 
     useEffect(() => {
         setCalculation(JSON.parse(localStorage.getItem("Calculations")) || []);
