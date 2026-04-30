@@ -10,18 +10,20 @@ import Functionalities from './Components/Functionalities'
 import About from './Components/About'
 import Home from './Components/Home'
 import ProtectedRoute, { LoginRoute } from './Components/ProtectedRoute'
+import Password from './Components/Password'
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
-        <Route path="/" element={<LoginRoute />}/>
+      <Route path="/" element={<LoginRoute />}/>
         <Route element = {<ProtectedRoute/>}>
          <Route path="/dashboard" element={<Dashboard />}>
          <Route index element={<Navigate to="home" replace/>}/>
           <Route path='*' element={<Navigate to="/dashboard" replace/>}/>
           <Route path="home" element={<Home />} />
           <Route path="functionalities" element={<Functionalities />} />
+          <Route path='password' element={<Password/>}/>
           <Route path="about" element={<About />} />
         </Route>
       </Route>

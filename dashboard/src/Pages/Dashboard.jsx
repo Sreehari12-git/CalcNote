@@ -17,6 +17,7 @@ function Dashboard() {
                 <div className="nav-links">
                     <Link to="home">Home</Link>
                     <Link to="functionalities">Functionalities</Link>
+                    <Link to="password">Password generator</Link>
                     <Link to="about">About</Link>
                 </div>
 
