@@ -10,6 +10,9 @@ function Functionalities() {
     const [text, setText] = useState("")
 
     function calculate() {
+      setNum1("");
+      setNum2("");
+      setOperator("")
         let n1 = parseFloat(num1);
         let n2 = parseFloat(num2);
         
@@ -60,6 +63,7 @@ function Functionalities() {
     }
 
     function save() {
+      setText("")
       const existing = JSON.parse(localStorage.getItem("Text")) || [];
       existing.push(text);
       localStorage.setItem("Text", JSON.stringify(existing));

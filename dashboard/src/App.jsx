@@ -15,9 +15,12 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-        <Route path="" element={<LoginRoute />} />
+        <Route path="" element={<LoginRoute />} >
+          <Route path='*' element={<Navigate to="" replace/>}/>
+        </Route>
         <Route element = {<ProtectedRoute/>}>
          <Route path="/dashboard" element={<Dashboard />}>
+         <Route index element={<Navigate to="home" replace/>}/>
           <Route path='*' element={<Navigate to="/dashboard" replace/>}/>
           <Route path="home" element={<Home />} />
           <Route path="functionalities" element={<Functionalities />} />

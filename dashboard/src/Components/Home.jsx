@@ -7,6 +7,8 @@ function Home() {
 
     const uniqueCalculations = [...new Set(calculation)];
 
+    // const uniqueText = [...new Set(text)];
+
     const [calcPage, setCalcPage] = useState(1);
     const [textPage, setTextPage] = useState(1);
 
