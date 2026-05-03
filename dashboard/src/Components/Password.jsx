@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import "../Password.css"
 
 function Password() {
 
@@ -16,67 +17,60 @@ function Password() {
     setLength(parseInt(e.target.value, 10));
   };
 
-  const generatePassword = () => {
-  if (length === 0) return;
+  const copy = async() => {
+    if(!password) return;
 
-  const types = [];
-
-  if (includeLetters) types.push(letters);
-  if (includeNumbers) types.push(numbers);
-  if (includeSpecial) types.push(specials);
-
-  // 🚫 nothing selected
-  if (types.length === 0) {
-    setPassword("");
-    return;
+    try {
+      await navigator.clipboard.writeText(password);
+      alert("Password copied to clipboard");
+    } catch(err) {
+      console.error(err);
+    }
   }
 
-  let result = [];
+  const generatePassword = useCallback(() => {
+    if (length === 0) return;
 
-  // ✅ base distribution
-  const baseCount = Math.floor(length / types.length);
-  let remainder = length % types.length;
+    const allChars = [];
 
-  // Step 1: assign base count to each type
-  types.forEach((set) => {
-    for (let i = 0; i < baseCount; i++) {
+    if(includeLetters) allChars.push(letters);
+    if(includeNumbers) allChars.push(numbers);
+    if(includeSpecial) allChars.push(specials);
+
+    if(allChars.length === 0) {
+      setPassword("");
+      return;
+    }
+
+    let result = [];
+
+    const baseCount = Math.floor(length/allChars.length);
+    let remainder = length % allChars.length;
+
+    allChars.forEach((set) => {
+      for(let i = 0; i < baseCount; i++) {
+        const index = Math.floor(Math.random() * set.length);
+        result.push(set[index]);
+      }
+    })
+
+    for(let i = 0; i < remainder; i++) {
+      const set = allChars[i % allChars.length];
       const index = Math.floor(Math.random() * set.length);
       result.push(set[index]);
     }
-  });
 
-  // Step 2: distribute remainder (extra characters)
-  for (let i = 0; i < remainder; i++) {
-    const set = types[i % types.length];
-    const index = Math.floor(Math.random() * set.length);
-    result.push(set[index]);
-  }
+    for(let i = result.length-1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [result[i], result[j]] = [result[j], result[i]];
+    }
 
-  // Step 3: shuffle
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
+    setPassword(result.join(""));
 
-  setPassword(result.join(""));
-};
-
-const copy = async() => {
-  if(!password) return;
-
-  try {
-    await navigator.clipboard.writeText(password);
-    alert("Copied to clipboard");
-  } catch(err) {
-    console.error("Failed to copy:",err)
-  }
-
-}
+}, [length, includeLetters, includeNumbers, includeSpecial]);
 
   return (
-    <div>
-      <h2>Password Generator</h2>
-
+    <div className='password-box'>
       <input
         type="range"
         min="3"
@@ -116,7 +110,7 @@ const copy = async() => {
       <button onClick={generatePassword} >Generate</button>
 
       <div>
-        <strong>Password: </strong>{password}
+        <input type='text' value={password} readOnly/>
         <button onClick={copy} disabled={!password}>Copy</button>
       </div>
     </div>
