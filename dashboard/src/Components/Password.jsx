@@ -1,83 +1,120 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react';
+import "../Password.css"
 
 function Password() {
-    const [length, setLength] = useState(3);
-    const [includeLetters, setLetters] = useState(false);
-    const [includeNumbers, setIncludeNumbers] = useState(false);
-    const [includeSpecials, setIncludeSpecials] = useState(false);
-    const [result, setResult] = useState("");
 
-    const generatePassword = () => {
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        let numbers = "0123456789";
-        let specials = "!@#$%^&*()_+[]{}|;:,.<>?";
+  const [length, setLength] = useState(3);
+  const [includeLetters, setLetters] = useState(false);
+  const [includeNumbers, setNumbers] = useState(false);
+  const [includeSpecial, setSpecial] = useState(false);
+  const [password, setPassword] = useState("");
 
-        let allChars = "";
-        if (includeLetters) allChars += letters;
-        if (includeNumbers) allChars += numbers;
-        if (includeSpecials) allChars += specials;
+  const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const numbers = "0123456789";
+  const specials = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
 
-        if (!allChars) {
-            alert("Please select at least one character type");
-            return;
-        }
+  const handleSliderChange = (e) => {
+    setLength(parseInt(e.target.value, 10));
+  };
 
-        let password = ""; 
-        for (let i = 0; i < length; i++) {
-            const randomIndex = Math.floor(Math.random() * allChars.length);
-            password += allChars[randomIndex];
-        }
+  const copy = async() => {
+    if(!password) return;
 
-        setResult(password);
-    };
+    try {
+      await navigator.clipboard.writeText(password);
+      alert("Password copied to clipboard");
+    } catch(err) {
+      console.error(err);
+    }
+  }
 
-    return (
-        <>
-            <label>
-                <input
-                    type='checkbox'
-                    checked={includeLetters}
-                    onChange={() => setLetters(!includeLetters)}
-                />
-                Letters
-            </label>
+  const generatePassword = () => {
+    if (length === 0) return;
 
-            <label>
-                <input
-                    type='checkbox'
-                    checked={includeNumbers}
-                    onChange={() => setIncludeNumbers(!includeNumbers)}
-                />
-                Numbers
-            </label>
+    const allChars = [];
 
-            <label>
-                <input
-                    type='checkbox'
-                    checked={includeSpecials}
-                    onChange={() => setIncludeSpecials(!includeSpecials)}
-                />
-                Special symbols
-            </label>
+    if(includeLetters) allChars.push(letters);
+    if(includeNumbers) allChars.push(numbers);
+    if(includeSpecial) allChars.push(specials);
 
-            <label>
-                <input
-                    type='range'
-                    min="3"
-                    max="10"
-                    value={length}
-                    onChange={(e) => setLength(Number(e.target.value))} 
-                />
-                Length: {length}
-            </label>
+    if(allChars.length === 0) {
+      setPassword("");
+      return;
+    }
 
-            <p>Password: {result}</p>
+    let result = [];
 
-            <button onClick={generatePassword}>
-                Generate Password
-            </button>
-        </>
-    );
+    const baseCount = Math.floor(length/allChars.length);
+    let remainder = length % allChars.length;
+
+    allChars.forEach((set) => {
+      for(let i = 0; i < baseCount; i++) {
+        const index = Math.floor(Math.random() * set.length);
+        result.push(set[index]);
+      }
+    })
+
+    for(let i = 0; i < remainder; i++) {  
+      const set = allChars[i % allChars.length];
+      const index = Math.floor(Math.random() * set.length);
+      result.push(set[index]);
+    }
+
+    for(let i = result.length-1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [result[i], result[j]] = [result[j], result[i]];
+    }
+
+    setPassword(result.join(""));
+
+};
+
+  return (
+    <div className='password-box'>
+      <input
+        type="range"
+        min="3"
+        max="30"
+        value={length}
+        onChange={handleSliderChange}
+      />
+      <span> Length: {length} </span>
+
+      <label>
+        <input
+          type="checkbox"
+          checked={includeLetters}
+          onChange={() => setLetters(prev => !prev)}
+        />
+        Letters
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          checked={includeNumbers}
+          onChange={() => setNumbers(prev => !prev)}
+        />
+        Numbers
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          checked={includeSpecial}
+          onChange={() => setSpecial(prev => !prev)}
+        />
+        Symbols
+      </label>
+
+      <button onClick={generatePassword} >Generate</button>
+
+      <div>
+        <input type='text' value={password} readOnly/>
+        <button onClick={copy} disabled={!password}>Copy</button>
+      </div>
+    </div>
+  );
 }
 
 export default Password;

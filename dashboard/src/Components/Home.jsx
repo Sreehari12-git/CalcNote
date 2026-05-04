@@ -31,6 +31,7 @@ function Home() {
         setCalculation(JSON.parse(localStorage.getItem("Calculations")) || []);
         setText(JSON.parse(localStorage.getItem("Text")) || []);;
     },[])
+    
   return (
     <div className="home-container">
   <div className="cards-wrapper"> 
