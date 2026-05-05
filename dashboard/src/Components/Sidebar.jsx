@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar({ activeItem, setActiveItem }) {
+  const navigate = useNavigate();
   return (
     <div className='sidebar'>
       <div
@@ -12,7 +14,7 @@ function Sidebar({ activeItem, setActiveItem }) {
 
       <div
         className={`sidebar-item ${activeItem === "Carts" ? "active-sidebar" : ""}`}
-        onClick={() => setActiveItem("Carts")}
+        onClick={() => { setActiveItem("Carts"); navigate("/dashboard/cart");} }
       >
         Carts
       </div>
