@@ -18,6 +18,7 @@ function Dashboard() {
                     <Link to="home">Home</Link>
                     <Link to="functionalities">Functionalities</Link>
                     <Link to="password">Password generator</Link>
+                    <Link to="products">Products</Link>
                     <Link to="about">About</Link>
                 </div>
 

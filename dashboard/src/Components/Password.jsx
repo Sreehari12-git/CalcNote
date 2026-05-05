@@ -71,14 +71,17 @@ function Password() {
 
   return (
     <div className='password-box'>
-      <input
-        type="range"
-        min="3"
-        max="30"
-        value={length}
-        onChange={handleSliderChange}
-      />
-      <span> Length: {length} </span>
+    <div className="slider-row">
+  <input
+    type="range"
+    min="3"
+    max="30"
+    value={length}
+    onChange={handleSliderChange}
+  />
+   <label>Length</label>
+  <span>{length}</span>
+</div>
 
       <label>
         <input
