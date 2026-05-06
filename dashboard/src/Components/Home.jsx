@@ -29,7 +29,7 @@ function Home() {
 
     useEffect(() => {
         setCalculation(JSON.parse(localStorage.getItem("Calculations")) || []);
-        setText(JSON.parse(localStorage.getItem("Text")) || []);;
+        setText(JSON.parse(localStorage.getItem("Text")) || []);
     },[])
     
   return (

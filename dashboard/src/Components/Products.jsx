@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import Sidebar from './Sidebar';
 import ProductDetails from '../Pages/ProductDetails';
 import '../Products.css'
+import { useNavigate } from 'react-router-dom';
 
 function Products() {
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const navigate = useNavigate();
 
   const products = [
     { id: 1, name: "Basket Ball", price: 500, description: "High quality basketball for outdoor play" },
@@ -26,7 +28,7 @@ function Products() {
                     <h4>{product.name}</h4>
                     <p>₹{product.price}</p>
                   </div>
-                  <button className='view-btn' onClick={() => setSelectedProduct(product)}>
+                  <button className='view-btn' onClick={() => navigate(`/dashboard/products/${product.id}`)}>
                     View Details
                   </button>
                 </div>
@@ -35,10 +37,6 @@ function Products() {
           </ul>
         </div>
       </div>
-
-      {selectedProduct && (
-        <ProductDetails product={selectedProduct} onClose={() => setSelectedProduct(null)} />
-      )}
     </div>
   )
 }
