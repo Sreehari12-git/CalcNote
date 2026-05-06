@@ -1,20 +1,23 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-function Sidebar({ activeItem, setActiveItem }) {
+function Sidebar() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const activeItem = location.pathname.includes("cart") ? "Carts" : "Products";
   return (
     <div className='sidebar'>
       <div
         className={`sidebar-item ${activeItem === "Products" ? "active-sidebar" : ""}`}
-        onClick={() => setActiveItem("Products")}
+        onClick={() => navigate("/dashboard/products")}
       >
         Products
       </div>
 
       <div
         className={`sidebar-item ${activeItem === "Carts" ? "active-sidebar" : ""}`}
-        onClick={() => { setActiveItem("Carts"); navigate("/dashboard/cart");} }
+        onClick={() =>  navigate("/dashboard/cart") }
       >
         Carts
       </div>
