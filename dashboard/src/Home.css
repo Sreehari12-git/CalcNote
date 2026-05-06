@@ -10,7 +10,6 @@
   color: #2c3e50;
 }
 
-/* Card layout */
 .card {
   background-color: #f9f9f9;
   padding: 20px;
@@ -49,7 +48,6 @@
   margin-top: 15px;
 }
 
-/* Left & right buttons */
 .nav-btn {
   padding: 6px 12px;
   border: none;
@@ -64,7 +62,6 @@
   cursor: not-allowed;
 }
 
-/* Middle page numbers */
 .page-numbers {
   display: flex;
   gap: 8px;
@@ -73,7 +70,6 @@
   flex: 1;
 }
 
-/* Individual page buttons */
 .page-btn {
   padding: 5px 10px;
   border: 1px solid #ccc;
@@ -82,7 +78,6 @@
   cursor: pointer;
 }
 
-/* Active page */
 .page-btn.active {
   background-color: #2c3e50;
   color: white;

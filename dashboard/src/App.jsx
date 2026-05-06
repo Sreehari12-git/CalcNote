@@ -22,8 +22,6 @@ function App() {
         <Route element = {<ProtectedRoute/>}>
          <Route path="/dashboard" element={<Dashboard />}>
          <Route index element={<Navigate to="home" replace/>}/>
-          {/* <Route path='*' element={<Navigate to="/dashboard" replace/>}/> */}
-          {/* <Route path='*' element={<NotFound/>}/> */}
           <Route path="home" element={<Home />} />
           <Route path="functionalities" element={<Functionalities />} />
           <Route path='password' element={<Password/>}/>

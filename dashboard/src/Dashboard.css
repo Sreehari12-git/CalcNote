@@ -2,7 +2,6 @@
   font-family: Arial, sans-serif;
 }
 
-/* Top Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -17,7 +16,6 @@
   margin: 0;
 }
 
-/* Links */
 .nav-links {
   display: flex;
   gap: 20px;
@@ -34,7 +32,6 @@
   color: #1abc9c;
 }
 
-/* Logout Button */
 .logout-btn {
   background-color: #e74c3c;
   border: none;
@@ -48,7 +45,6 @@
   background-color: #c0392b;
 }
 
-/* Main Content */
 .content {
   text-align: center;
   margin-top: 50px;

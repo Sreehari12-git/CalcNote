@@ -27,7 +27,7 @@ function ProductDetails({ product, onClose }) {
           <p className="modal-description">{product.description}</p>
         </div>
         <div className="modal-footer">
-          <button className="back-btn" onClick={onClose}>Back</button>
+          <button className="back-btn" onClick={onClose}>Cancel</button>
           <button className="cart-btn" onClick={handleAddToCart}>Add to Cart</button>
         </div>
       </div>

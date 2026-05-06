@@ -15,7 +15,6 @@ function Products() {
   return (
     <div className='layout'>
       <Sidebar />
-
       <div className='products-container'>
         <div className='sports'>
           <h2>Sports</h2>
