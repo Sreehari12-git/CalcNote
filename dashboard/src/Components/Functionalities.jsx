@@ -8,7 +8,7 @@ function Functionalities() {
     const [operator, setOperator] = useState("")
     const [result, setResult] = useState(null)
     const [text, setText] = useState("")
-
+    
     function calculate() {
       setNum1("");
       setNum2("");

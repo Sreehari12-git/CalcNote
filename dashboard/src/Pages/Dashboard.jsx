@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link, useNavigate, Outlet} from "react-router-dom"
 import '../Dashboard.css'
+import ThemeToggle from '../Components/ThemeToggle';
 function Dashboard() {
     const email = localStorage.getItem("Email");
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ function Dashboard() {
         <div className="dashboard">
             <div className="navbar">
                 <h1>Welcome {email}</h1>
-
+                <ThemeToggle/>
                 <div className="nav-links">
                     <Link to="home">Home</Link>
                     <Link to="functionalities">Functionalities</Link>

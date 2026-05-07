@@ -3,7 +3,7 @@ import "../Password.css"
 
 function Password() {
 
-  const [length, setLength] = useState(3);
+  const [length, setLength] = useState(0);
   const [includeLetters, setLetters] = useState(false);
   const [includeNumbers, setNumbers] = useState(false);
   const [includeSpecial, setSpecial] = useState(false);
@@ -29,7 +29,9 @@ function Password() {
   }
 
   const generatePassword = () => {
-    if (length === 0) return;
+    if (length === 0) {
+      alert("Cannot generate a password with 0 characters")
+    }
 
     const allChars = [];
 
@@ -74,12 +76,12 @@ function Password() {
     <div className="slider-row">
   <input
     type="range"
-    min="3"
+    min="0"
     max="30"
     value={length}
     onChange={handleSliderChange}
   />
-   <label>Length</label>
+  <label>Length</label>
   <span>{length}</span>
 </div>
 
