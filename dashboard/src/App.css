@@ -3,15 +3,18 @@
   margin: 100px auto;
   padding: 30px;
   border-radius: 10px;
-  background-color: #f5f5f5;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: var(--card-bg);     /* ← was #f5f5f5 */
+  border: 1px solid var(--border);      /* ← added */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  color: var(--text);                   /* ← added */
 }
 
 .container h2 {
   margin-bottom: 5px;
   font-size: 16px;
   text-align: left;
+  color: var(--text);                   /* ← added */
 }
 
 .container input {
@@ -19,18 +22,27 @@
   padding: 8px;
   margin-bottom: 15px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);      /* ← was #ccc */
+  background-color: var(--input-bg);    /* ← added */
+  color: var(--input-text);             /* ← added */
+  outline: none;
+  box-sizing: border-box;               /* ← added, prevents overflow */
+}
+
+.container input:focus {
+  border-color: #4CAF50;                /* ← added, nice focus state */
 }
 
 .container button {
   width: 100%;
   padding: 10px;
   border: none;
-  background-color: #4CAF50;
+  background-color: #4CAF50;            /* ← keep, brand color */
   color: white;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  transition: 0.2s;                     /* ← added */
 }
 
 .container button:hover {
