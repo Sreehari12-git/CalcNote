@@ -13,34 +13,47 @@ import Products from './Components/Products'
 import ProductDetails from './Pages/ProductDetails'
 import Carts from './Components/Carts'
 import { useSelector } from 'react-redux'
+import { generateToken } from './notifications/firebase'
+import { onMessage } from 'firebase/messaging'
+import { messaging } from './notifications/firebase'
+import toast, { Toaster } from 'react-hot-toast';
 
 
 function App() {
 
-  const themeMode = useSelector((state) => state.theme.mode)
+   useEffect(() => {
+    navigator.serviceWorker.register("/firebase-messaging-sw.js");
+    generateToken();
+    onMessage(messaging, (payload) => {
+      toast(payload.notification.body); 
+    });
+  }, []);
+
+  const themeMode = useSelector((state) => state.theme.mode);
 
   useEffect(() => {
     const root = document.documentElement;
-
-    if(themeMode === "system") {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      root.setAttribute('data-theme', prefersDark ? 'dark' : 'light')
+    if (themeMode === "system") {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
     } else {
-      root.setAttribute('data-theme', themeMode)
+      root.setAttribute('data-theme', themeMode);
     }
-  }, [themeMode])
+  }, [themeMode]);
 
-    useEffect(() => {
-    if (themeMode !== 'system') return
-    const mq = window.matchMedia('(prefers-color-scheme: dark)')
+  useEffect(() => {
+    if (themeMode !== 'system') return;
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
     const handler = (e) => {
-      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light')
-    }
-    mq.addEventListener('change', handler)
-    return () => mq.removeEventListener('change', handler)
-  }, [themeMode])
+      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    };
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, [themeMode]);
 
   return (
+    <>
+    <Toaster  position='top-right'/>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<LoginRoute />}/>
@@ -59,6 +72,7 @@ function App() {
       <Route path="*" element={<NotFound/>}/> 
     </Routes>
     </BrowserRouter>
+    </>
   )
 }
 
