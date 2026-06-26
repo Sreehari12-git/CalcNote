@@ -8,13 +8,29 @@ function Functionalities() {
     const [operator, setOperator] = useState("")
     const [result, setResult] = useState(null)
     const [text, setText] = useState("")
-
+    
     function calculate() {
+      setNum1("");
+      setNum2("");
+      setOperator("")
         let n1 = parseFloat(num1);
         let n2 = parseFloat(num2);
         
         if(isNaN(n1) || isNaN(n2)) {
             alert("Should be number")
+            return;
+        }
+
+        const key = `${n1} ${operator} ${n2} `
+
+        const existing = JSON.parse(localStorage.getItem("Calculations")) || [];
+
+        const found = existing.find(item => item.startsWith(key))
+
+        if(found) {
+          const isResult = found.split("=")[1].trim();
+          const newExp = `${key} = ${isResult}`
+            setResult(newExp);
             return;
         }
 
@@ -40,21 +56,30 @@ function Functionalities() {
                 alert("Enter a valid operator")
                 return;
         }
-        const expression = `${num1} ${operator} ${num2} = ${res}`;
+        const expression = `${key} = ${res}`;
         setResult(expression);
-
-        const existing = JSON.parse(localStorage.getItem("Calculations")) || [];
-
-        existing.push(expression);
-
-        localStorage.setItem("Calculations", JSON.stringify(existing))
+      localStorage.setItem("Calculations", JSON.stringify([...existing, expression]));
     
     }
 
     function save() {
       const existing = JSON.parse(localStorage.getItem("Text")) || [];
-      existing.push(text);
+      if(typeof text !== "string" || text.trim() === "") {
+        alert("Invalid or empty string. Not saved")
+        return
+      }
+
+      const value = text.trim();
+
+     const isDuplicate = existing.some(
+        item => item.toLowerCase() === value.toLowerCase()
+      );
+
+    if (!isDuplicate) {
+      existing.push(value); 
       localStorage.setItem("Text", JSON.stringify(existing));
+    }
+    setText("")
     }
 
     return (
@@ -75,7 +100,6 @@ function Functionalities() {
         </div>
       </div>
 
-      {/* Content */}
       <div className="content-area">
         <div className="func-card">
 

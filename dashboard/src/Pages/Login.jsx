@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import "../App.css"
+import ThemeToggle from '../Components/ThemeToggle';
+
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

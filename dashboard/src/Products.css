@@ -1,0 +1,76 @@
+.layout {
+  display: flex;
+  height: 100vh;
+  background-color: var(--bg);
+}
+
+.products-container {
+  flex: 1;
+  padding: 30px;
+  background-color: var(--bg);
+}
+
+.sports {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sports h2 {
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sports li {
+  margin-bottom: 12px;
+}
+
+.product-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.product-info h4 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.product-info p {
+  margin: 4px 0 0;
+  color: var(--subtext);
+  font-size: 14px;
+}
+
+.view-btn {
+  background: #38b2ac;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.view-btn:hover {
+  background: #2c7a7b;
+}

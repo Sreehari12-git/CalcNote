@@ -6,7 +6,6 @@ const ProtectedRoute = () => {
     if(localStorage.getItem("Email") === null) {
         return <Navigate to="" />
     }
-
     return <Outlet/>
 }
 
