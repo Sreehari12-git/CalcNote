@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background-color: var(--bg);          /* ← was #f0f2f5 */
+  background-color: var(--bg);
   min-height: 100vh;
   padding: 60px 20px;
 }
@@ -11,10 +11,10 @@
 .modal-content {
   width: 100%;
   max-width: 600px;
-  background: var(--card-bg);           /* ← was #fff */
-  color: var(--text);                   /* ← added */
+  background: var(--card-bg);
+  color: var(--text);
   border-radius: 16px;
-  border: 1px solid var(--border);      /* ← added */
+  border: 1px solid var(--border);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   padding: 40px;
   display: flex;
@@ -27,31 +27,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--border); /* ← was #e0e0e0 */
+  border-bottom: 1px solid var(--border);
   padding-bottom: 16px;
 }
 
 .modal-header h2 {
   font-size: 26px;
   font-weight: 700;
-  color: var(--text);                   /* ← was #1a1a2e */
+  color: var(--text);
   margin: 0;
 }
 
 .close-btn {
-  background: var(--surface);           /* ← was #f5f5f5 */
-  border: 1px solid var(--border);      /* ← added */
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 50%;
   width: 36px;
   height: 36px;
   font-size: 16px;
   cursor: pointer;
-  color: var(--text);                   /* ← was #555 */
+  color: var(--text);
   transition: background 0.2s;
 }
 
 .close-btn:hover {
-  background: var(--border);            /* ← was #e0e0e0 */
+  background: var(--border);
 }
 
 .modal-body {
@@ -63,13 +63,13 @@
 .modal-price {
   font-size: 28px;
   font-weight: 700;
-  color: #2ec4b6;                       /* ← keep, brand color */
+  color: #2ec4b6;
   margin: 0;
 }
 
 .modal-description {
   font-size: 16px;
-  color: var(--subtext);                /* ← was #666 */
+  color: var(--subtext);
   line-height: 1.6;
   margin: 0;
 }
@@ -78,30 +78,30 @@
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  border-top: 1px solid var(--border);  /* ← was #e0e0e0 */
+  border-top: 1px solid var(--border);
   padding-top: 20px;
 }
 
 .back-btn {
   padding: 10px 24px;
   border-radius: 8px;
-  border: 1px solid var(--border);      /* ← was #ccc */
-  background: var(--surface);           /* ← was #fff */
-  color: var(--text);                   /* ← was #555 */
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
   font-size: 15px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .back-btn:hover {
-  background: var(--border);            /* ← was #f5f5f5 */
+  background: var(--border);
 }
 
 .cart-btn {
   padding: 10px 24px;
   border-radius: 8px;
   border: none;
-  background: #2ec4b6;                  /* ← keep, brand color */
+  background: #2ec4b6;
   color: #fff;
   font-size: 15px;
   font-weight: 600;

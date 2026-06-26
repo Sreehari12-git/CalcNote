@@ -1,17 +1,17 @@
 .layout {
   display: flex;
   height: 100vh;
-  background-color: var(--bg);          /* ← was #f4f6f9 */
+  background-color: var(--bg);
 }
 
 .products-container {
   flex: 1;
   padding: 30px;
-  background-color: var(--bg);          /* ← added */
+  background-color: var(--bg);
 }
 
 .sports {
-  background: var(--card-bg);           /* ← was white */
+  background: var(--card-bg);
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -19,7 +19,7 @@
 
 .sports h2 {
   margin-bottom: 20px;
-  color: var(--text);                   /* ← was #333 */
+  color: var(--text);
 }
 
 ul {
@@ -36,10 +36,10 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--surface);           /* ← was #f9f9f9 */
+  background: var(--surface);
   padding: 14px 18px;
   border-radius: 10px;
-  border: 1px solid var(--border);      /* ← added */
+  border: 1px solid var(--border);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.2s ease;
 }
@@ -51,17 +51,17 @@ ul {
 .product-info h4 {
   margin: 0;
   font-size: 16px;
-  color: var(--text);                   /* ← was #2d3748 */
+  color: var(--text);
 }
 
 .product-info p {
   margin: 4px 0 0;
-  color: var(--subtext);                /* ← was gray */
+  color: var(--subtext);
   font-size: 14px;
 }
 
 .view-btn {
-  background: #38b2ac;                  /* ← keep, it's a brand color */
+  background: #38b2ac;
   color: white;
   border: none;
   padding: 8px 18px;
